@@ -3,12 +3,12 @@ var url = window.location.href;
 var surveyId = url.match(/\/(\d+)\//)[1];
 var env = url.match(/-(\w+)-(\w+)/)[0];
 
-var token = JSON.parse(localStorage.getItem(`oidc.user:https://auth${env}.modernsurvey.com/:SurveyBuilderWeb`)).access_token;
+var token = JSON.parse(localStorage.getItem(`oidc.user:https://auth${env}.nda-app.com/:SurveyBuilderWeb`)).access_token;
 
 genLinks = (element) =>
-    console.log(`https://mresearchsurveyengine${env}.modernsurvey.com/Survey.aspx?cid=${element}`);
+    console.log(`https://mresearchsurveyengine${env}.nda-app.com/Survey.aspx?cid=${element}`);
 
-fetch(`https://surveybuilder-api${env}.modernsurvey.com/v1/surveys/${surveyId}/audiences`, {
+fetch(`https://surveybuilder-api${env}.nda-app.com/v1/surveys/${surveyId}/audiences`, {
     "headers": {
         "accept": "application/json, text/plain, */*",
         "accept-language": "en-US,en;q=0.9",
@@ -20,7 +20,7 @@ fetch(`https://surveybuilder-api${env}.modernsurvey.com/v1/surveys/${surveyId}/a
         "sec-fetch-site": "same-site",
         "timezoneabbr": "Europe/Warsaw"
     },
-    "referrer": `https://surveybuilder${env}.modernsurvey.com/survey-admin/4092`,
+    "referrer": `https://surveybuilder${env}.nda-app.com/survey-admin/4092`,
     "referrerPolicy": "no-referrer-when-downgrade",
     "body": null,
     "method": "GET",
@@ -29,7 +29,7 @@ fetch(`https://surveybuilder-api${env}.modernsurvey.com/v1/surveys/${surveyId}/a
 })
 .then((response)=>response.json())
 .then((json)=>{
-    fetch(`https://surveybuilder-api${env}.modernsurvey.com/v1/surveys/${surveyId}/audiences/${json[0].audienceId}/surveyparticipants/paged`, {
+    fetch(`https://surveybuilder-api${env}.nda-app.com/v1/surveys/${surveyId}/audiences/${json[0].audienceId}/surveyparticipants/paged`, {
         "headers": {
             "accept": "application/json, text/plain, */*",
             "accept-language": "en-US,en;q=0.9",
@@ -43,7 +43,7 @@ fetch(`https://surveybuilder-api${env}.modernsurvey.com/v1/surveys/${surveyId}/a
             "timezoneabbr": "Europe/Warsaw",
             "cookie": "_ga=GA1.2.1581909785.1595849863; _gid=GA1.2.235289562.1595849863; ClientId=8e251a0e-9419-4394-8be6-7efb460689d1; msuite_timeout_time=1595851952586"
         },
-        "referrer": `https://surveybuilder${env}.modernsurvey.com/survey-admin/${surveyId}/participants`,
+        "referrer": `https://surveybuilder${env}.nda-app.com/survey-admin/${surveyId}/participants`,
         "referrerPolicy": "no-referrer-when-downgrade",
         "body": "{\"offSet\":0,\"limit\":25,\"sortedOn\":\"firstName\",\"sortAsc\":true,\"searchText\":\"\",\"columns\":\"\",\"selectedDistributionContactIds\":[]}",
         "method": "POST",
